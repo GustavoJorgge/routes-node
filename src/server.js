@@ -15,6 +15,14 @@ import { routes } from './route.js';
 
 // Cabeçalhos (Requisição, Resposta) => Metadados
 
+/*Três formas do front enviar os dados
+Query Parameters: http://localhost:3333/users?userID=1 -> URL Stateful
+    Utilizado para enviar informações que não sao sensiveis, como: Paginação, filtrar, buscar, etc....
+Route Parameters: http://localhost:3333/users/1 -> Identificação de recurso
+    Serve para identificarmos um recurso 
+Request Body: Envio de informações de um formulário
+*/
+
 
 
 const server = http.createServer(async (request, response) => {
@@ -42,4 +50,3 @@ const server = http.createServer(async (request, response) => {
 
 server.listen(3333)
 
-// localhost:3333
