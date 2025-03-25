@@ -1,6 +1,7 @@
 import http from 'http'
 import { json } from './middlewares/json.js';
 import { routes } from './route.js';
+import { extractQueryParams } from './utils/extract-query-params.js';
 // UUID => Unique Universal ID
 // import fastify from 'fastify'
 
@@ -44,8 +45,14 @@ const server = http.createServer(async (request, response) => {
     if (route) {
         const routeParams = request.url.match(route.path)
     
-        console.log(routeParams);
-        request.params = { ...routeParams.groups }
+       // console.log(extractQueryParams(routeParams.groups.query))
+
+        const { query, ...params } = routeParams.groups
+
+        request.params = params
+        request.query = query ? extractQueryParams(query) : {}
+
+        //request.params = { ...routeParams.groups }
     
         return route.handler(request, response)
       }

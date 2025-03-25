@@ -7,7 +7,8 @@ export function buildRoutePath(path){
     console.log(pathWithParams)
 
     //const test = /\/users\/([a-z-0-9-_]+)/
-    const pathRegex = new RegExp(`^${pathWithParams}`)
+    //o ? no final, indica que a query params é opcional | o \\? esta escapando o ? e o (.*) indicaque tudo que estiver após sera o parametro 
+    const pathRegex = new RegExp(`^${pathWithParams}(?<query>\\?(.*))?`) 
     console.log(Array.from(path.matchAll(routeParametersRegex)))
 
     return pathRegex

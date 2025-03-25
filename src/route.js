@@ -10,6 +10,8 @@ export const routes = [{
     handler:(request,response)=>{
         const users = database.select('users')
 
+        console.log(request.query)
+
         return response.end(JSON.stringify(users))
     }
 },
