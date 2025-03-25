@@ -41,13 +41,14 @@ const server = http.createServer(async (request, response) => {
         return route.method == method && route.path.test(url)
     })
 
-    if(route){
+    if (route) {
         const routeParams = request.url.match(route.path)
-
-        request.params = {...routeParams.group}
-
-        return route.handler(request,response)
-    }
+    
+        console.log(routeParams);
+        request.params = { ...routeParams.groups }
+    
+        return route.handler(request, response)
+      }
 
     return response.writeHead(404).end('Not foundZ')
 })
